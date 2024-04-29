@@ -18,7 +18,7 @@ class MyTiles extends StatelessWidget {
             Column(
               children: [
                 Container(
-                  // color: Colors.white,
+                  
                   decoration: BoxDecoration(
                       border: Border.all(color: Colors.white, width: 2),
                       borderRadius: BorderRadius.circular(13)),
@@ -30,7 +30,11 @@ class MyTiles extends StatelessWidget {
                       color: textcolor,
                     ),
                     title: Text(
-                      "data",style: TextStyle(color:textcolor),
+                      "data",style: TextStyle(color:textcolor,fontSize: 22),
+                      
+                    ),
+                    subtitle: Text(
+                      "subtitle",style:TextStyle(color:textcolor)
                     ),
                   ),
                 )
