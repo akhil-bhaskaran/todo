@@ -1,7 +1,8 @@
+import 'package:flutter/material.dart';
 import 'package:isar/isar.dart';
 import 'package:my_todo_app/models/todo.dart';
 import 'package:path_provider/path_provider.dart';
-class TodoDatabase{
+class TodoDatabase extends ChangeNotifier{
 static late Isar _isar ;
 static final List<Todo> currentTodos=[];
 //INTIALISE
@@ -9,14 +10,14 @@ static Future<void> initialise()async{
   final dir= await getApplicationDocumentsDirectory();
   _isar =await Isar.open([TodoSchema], directory: dir.path);
 }
-// CREATE A TODO
+// CREATE A TODOO
 Future<void> insertTodo(String usertitle,String userdescription)async{
 
-  final NewTodo = Todo(title:usertitle , description:userdescription );
+  final newTodo = Todo(title:usertitle , description:userdescription );
     // save to db
-    await _isar.writeTxn(() => _isar.todos.put(NewTodo));
+    await _isar.writeTxn(() => _isar.todos.put(newTodo));
     //re-read from db
-    fetchTodo();
+   await fetchTodo();
 }
 
 // EDITING THE TODO
@@ -30,9 +31,10 @@ Future<void> insertTodo(String usertitle,String userdescription)async{
 
 // }
 
-// DELETING THE TODO
+// DELETING THE TODOO
 Future<void> deleteTodo(int id)async{
  await _isar.writeTxn(() => _isar.todos.delete(id));
+ currentTodos.removeAt(id);
  await fetchTodo();
 }
 
@@ -41,7 +43,7 @@ Future<void> fetchTodo()async{
  List<Todo> fetchedNotes = await _isar.todos.where().findAll();
     currentTodos.clear();
     currentTodos.addAll(fetchedNotes);
-    // notifyListeners();
+     notifyListeners();
 
 }
 
