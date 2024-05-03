@@ -61,7 +61,7 @@ class _HomePageState extends State<HomePage> {
           });
         },toodo:currentTodos[index],);},
        itemCount: currentTodos.length,),
-      floatingActionButton: FloatingActionButton(onPressed: (){ Navigator.push(context, MaterialPageRoute(builder: (context) =>NewTodoPage( todo: null,id: null) ,));}),
+      floatingActionButton: FloatingActionButton(onPressed: (){ Navigator.push(context, MaterialPageRoute(builder: (context) =>const NewTodoPage() ,));}),
     );
   }
 }

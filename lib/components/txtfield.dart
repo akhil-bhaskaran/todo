@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:my_todo_app/components/styles.dart';
 
 class TxtField extends StatelessWidget {
- final String Htext ;
+ final String htext ;
  final TextEditingController controller;
   const TxtField({
     super.key,
-    required this.Htext, required this.controller
+    required this.htext, required this.controller
   });
 
   @override
@@ -26,7 +26,7 @@ class TxtField extends StatelessWidget {
           border:
               OutlineInputBorder(borderRadius: BorderRadius.circular(13)),
           
-          hintText: Htext),
+          hintText: htext),
     );
   }
 }

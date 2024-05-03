@@ -3,18 +3,18 @@ import 'package:flutter/material.dart';
 import 'package:my_todo_app/components/styles.dart';
 import 'package:my_todo_app/models/todo.dart';
 
-import 'package:my_todo_app/models/todo_dataabase.dart';
+
 import 'package:my_todo_app/pages/adding_page.dart';
-import 'package:provider/provider.dart';
+
 
 class MyTiles extends StatelessWidget {
  final void Function() onPressed;
   final Todo toodo;
   final String titles;
   final String descriptions;
-  Function(bool?)? onchanged;
+  final Function(bool?)? onchanged;
   final bool taskcompleted;
-  MyTiles(
+  const MyTiles(
       {super.key,
       required this.taskcompleted,
       required this.onchanged,
@@ -80,7 +80,7 @@ class MyTiles extends StatelessWidget {
                     onPressed: () => Navigator.push(
                         context, 
                         MaterialPageRoute(
-                          builder: (context) => NewTodoPage(id: toodo.id,todo: toodo),
+                          builder: (context) => NewTodoPage(todo: toodo),
                         )),
                   ),
                 )

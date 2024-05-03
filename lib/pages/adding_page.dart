@@ -7,10 +7,9 @@ import 'package:my_todo_app/utils/notifications_conf.dart';
 import 'package:provider/provider.dart';
 
 class NewTodoPage extends StatefulWidget {
-  
-  final Todo ?todo;
-  final int ?id;
-  const NewTodoPage({super.key, required this.id, required this.todo});
+  final Todo? todo;
+
+  const NewTodoPage({super.key, this.todo});
 
   @override
   State<NewTodoPage> createState() => _NewTodoPageState();
@@ -19,21 +18,26 @@ class NewTodoPage extends StatefulWidget {
 class _NewTodoPageState extends State<NewTodoPage> {
   @override
   void initState() {
-    
+    if (widget.todo != null) {
+      titleTextEditingController.text = widget.todo!.title;
+      descTexteditingController.text = widget.todo!.description;
+    } else {
+      return;
+    }
     super.initState();
     // context.watch<TodoDatabase>().editTodo(,titleTextEditingController.text ,descTexteditingController.text );
     // if(titleTextEditingController!=null && descTexteditingController!=null){
 
     // }
-    
   }
+
   //create Todo
   void createTodo() {
     context.read<TodoDatabase>().insertTodo(
         titleTextEditingController.text, descTexteditingController.text);
-        Navigator.pop(context);
-        titleTextEditingController.clear();
-        descTexteditingController.clear();
+    Navigator.pop(context);
+    titleTextEditingController.clear();
+    descTexteditingController.clear();
   }
 
   TextEditingController titleTextEditingController = TextEditingController();
@@ -47,7 +51,7 @@ class _NewTodoPageState extends State<NewTodoPage> {
         elevation: 0,
       ),
       body: Padding(
-        padding: const EdgeInsets.symmetric(vertical:10,horizontal: 20 ),
+        padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           const Text(
             "Hey There!",
@@ -67,36 +71,36 @@ class _NewTodoPageState extends State<NewTodoPage> {
           ),
           const SizedBox(height: 100),
           TxtField(
-              Htext: "title(required)", controller: titleTextEditingController),
-          TxtField(Htext: "Description", controller: descTexteditingController),
+              htext: "title(required)", controller: titleTextEditingController),
+          TxtField(htext: "Description", controller: descTexteditingController),
           // Expanded(child: Column()),
-          Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Center(
                   child: ElevatedButton(
                 onPressed: createTodo,
-                child: Text("Submit"),
                 style: ButtonStyle(
                     backgroundColor: MaterialStatePropertyAll(textcolor),
                     foregroundColor: MaterialStatePropertyAll(iconscolor)),
+                child: const Text("Submit"),
               )),
-               Center(
+              Center(
                   child: ElevatedButton(
                 onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => SendNot(),
-                    ));
-              },
-              child: Text("Remind me!"),
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const SendNot(),
+                      ));
+                },
                 style: ButtonStyle(
                     backgroundColor: MaterialStatePropertyAll(textcolor),
                     foregroundColor: MaterialStatePropertyAll(iconscolor)),
+                child: const Text("Remind me!"),
               )),
             ],
           ),
-          
         ]),
       ),
     );
