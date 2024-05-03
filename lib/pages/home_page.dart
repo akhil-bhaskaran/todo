@@ -17,7 +17,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   void initState() {
-    // TODO: implement initState
+    
     super.initState();
     readTodos();
   }
@@ -54,9 +54,14 @@ class _HomePageState extends State<HomePage> {
         
         final todo =currentTodos[index];
 
-        return MyTiles( titles:todo.title ,descriptions:todo.description ,taskcompleted:todo.checked ,onchanged:null,Indexes: todo.id,);},
+        return MyTiles( titles:todo.title ,descriptions:todo.description ,taskcompleted:todo.checked ,onchanged:null,onPressed: () {
+          todoDatabase.deleteTodo(todo.id);
+          setState(() {
+            
+          });
+        },toodo:currentTodos[index],);},
        itemCount: currentTodos.length,),
-      floatingActionButton: FloatingActionButton(onPressed: (){ Navigator.push(context, MaterialPageRoute(builder: (context) =>NewTodoPage() ,));}),
+      floatingActionButton: FloatingActionButton(onPressed: (){ Navigator.push(context, MaterialPageRoute(builder: (context) =>NewTodoPage( todo: null,id: null) ,));}),
     );
   }
 }

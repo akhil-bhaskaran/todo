@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 
 import 'package:my_todo_app/components/styles.dart';
+import 'package:my_todo_app/models/todo.dart';
 
 import 'package:my_todo_app/models/todo_dataabase.dart';
 import 'package:my_todo_app/pages/adding_page.dart';
 import 'package:provider/provider.dart';
 
 class MyTiles extends StatelessWidget {
-  final int Indexes;
+ final void Function() onPressed;
+  final Todo toodo;
   final String titles;
   final String descriptions;
   Function(bool?)? onchanged;
@@ -18,11 +20,11 @@ class MyTiles extends StatelessWidget {
       required this.onchanged,
       required this.titles,
       required this.descriptions,
-      required this.Indexes});
+       required this.onPressed, required this.toodo});
 
   @override
   Widget build(BuildContext context) {
-    final todoDatabase = context.watch<TodoDatabase>();
+     
 
     return Padding(
       padding: const EdgeInsets.all(8.0),
@@ -65,8 +67,8 @@ class MyTiles extends StatelessWidget {
                       borderRadius: BorderRadius.circular(13),
                       color: textcolor),
                   child: IconButton(
-                    icon: Icon(Icons.delete, size: 32),
-                    onPressed: () => TodoDatabase().deleteTodo(Indexes),
+                    icon: const Icon(Icons.delete, size: 32),
+                    onPressed:onPressed
                   ),
                 ),
                 Container(
@@ -76,9 +78,9 @@ class MyTiles extends StatelessWidget {
                   child: IconButton(
                     icon: const Icon(Icons.edit, size: 32),
                     onPressed: () => Navigator.push(
-                        context,
+                        context, 
                         MaterialPageRoute(
-                          builder: (context) => NewTodoPage(),
+                          builder: (context) => NewTodoPage(id: toodo.id,todo: toodo),
                         )),
                   ),
                 )
