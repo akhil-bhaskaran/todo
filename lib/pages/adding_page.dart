@@ -33,24 +33,23 @@ class _NewTodoPageState extends State<NewTodoPage> {
 
   //create Todo
   void createTodo() {
-    if(widget.todo==null){
-    Todo newTodo = Todo(
-        title: titleTextEditingController.text,
-        description: descTexteditingController.text);
-    context.read<TodoDatabase>().insertTodo(newTodo);
+    if (widget.todo == null) {
+      Todo newTodo = Todo(
+          title: titleTextEditingController.text,
+          description: descTexteditingController.text);
+      context.read<TodoDatabase>().insertTodo(newTodo);
 
-    Navigator.pop(context);
-    titleTextEditingController.clear();
-    descTexteditingController.clear();}
-    else
-    {
-      widget.todo!.title= titleTextEditingController.text;
-      widget.todo!.description= descTexteditingController.text;
+      Navigator.pop(context);
+      titleTextEditingController.clear();
+      descTexteditingController.clear();
+    } else {
+      widget.todo!.title = titleTextEditingController.text;
+      widget.todo!.description = descTexteditingController.text;
       context.read<TodoDatabase>().insertTodo(widget.todo!);
 
-    Navigator.pop(context);
-    titleTextEditingController.clear();
-    descTexteditingController.clear();
+      Navigator.pop(context);
+      titleTextEditingController.clear();
+      descTexteditingController.clear();
     }
   }
 
