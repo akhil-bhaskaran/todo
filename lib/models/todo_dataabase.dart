@@ -14,11 +14,9 @@ static Future<void> initialise()async{
 }
 
 
-// CREATE A TODOO
-Future<void> insertTodo(String usertitle,String userdescription)async{
+// CREATE A TODOO-directly taking todo
+Future<void> insertTodo(Todo newTodo)async{
 
-  final newTodo = Todo(title:usertitle! , description:userdescription );
-    // save to db
     await _isar.writeTxn(() => _isar.todos.put(newTodo));
     //re-read from db
    await fetchTodo();
