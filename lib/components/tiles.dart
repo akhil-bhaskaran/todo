@@ -44,10 +44,21 @@ class MyTiles extends StatelessWidget {
                   width: MediaQuery.of(context).size.width * 0.75,
                   child: ListTile(
                     leading: Checkbox(
+                      checkColor: Color.fromARGB(255, 9, 255, 0),
+                      activeColor: Colors.white,
+                      shape: RoundedRectangleBorder(
+    borderRadius: BorderRadius.circular(2.0),
+  ),
+  side: MaterialStateBorderSide.resolveWith(
+      (states) => BorderSide(width: 1.0, color: Colors.red),
+  ),
+
+     
+      
+      
                       value: taskcompleted, onChanged: onchanged,
 
-                      // Icons.check_box_outline_blank,
-                      // color: textcolor,
+                      
                     ),
                     title: Text(
                       titles,
