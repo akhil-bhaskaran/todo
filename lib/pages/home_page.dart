@@ -57,6 +57,7 @@ class _HomePageState extends State<HomePage> {
         return MyTiles( titles:todo.title ,descriptions:todo.description ,taskcompleted:todo.checked ,onchanged:(value) {
                     setState(() {
                       todo.checked = !todo.checked;
+                      context.read<TodoDatabase>().insertTodo(todo);
                     });
                   },  onPressed: () {
           todoDatabase.deleteTodo(todo.id);

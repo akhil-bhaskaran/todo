@@ -3,12 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:my_todo_app/components/styles.dart';
 import 'package:my_todo_app/models/todo.dart';
 
-
 import 'package:my_todo_app/pages/adding_page.dart';
 
-
 class MyTiles extends StatelessWidget {
- final void Function() onPressed;
+  final void Function() onPressed;
   final Todo toodo;
   final String titles;
   final String descriptions;
@@ -20,12 +18,11 @@ class MyTiles extends StatelessWidget {
       required this.onchanged,
       required this.titles,
       required this.descriptions,
-       required this.onPressed, required this.toodo});
+      required this.onPressed,
+      required this.toodo});
 
   @override
   Widget build(BuildContext context) {
-     
-
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: SizedBox(
@@ -47,18 +44,13 @@ class MyTiles extends StatelessWidget {
                       checkColor: Color.fromARGB(255, 9, 255, 0),
                       activeColor: Colors.white,
                       shape: RoundedRectangleBorder(
-    borderRadius: BorderRadius.circular(2.0),
-  ),
-  side: MaterialStateBorderSide.resolveWith(
-      (states) => BorderSide(width: 1.0, color: Colors.red),
-  ),
-
-     
-      
-      
-                      value: taskcompleted, onChanged: onchanged,
-
-                      
+                        borderRadius: BorderRadius.circular(2.0),
+                      ),
+                      side: MaterialStateBorderSide.resolveWith(
+                        (states) => BorderSide(width: 1.0, color: Colors.red),
+                      ),
+                      value: taskcompleted,
+                      onChanged: onchanged,
                     ),
                     title: Text(
                       titles,
@@ -78,9 +70,8 @@ class MyTiles extends StatelessWidget {
                       borderRadius: BorderRadius.circular(13),
                       color: textcolor),
                   child: IconButton(
-                    icon: const Icon(Icons.delete, size: 32),
-                    onPressed:onPressed
-                  ),
+                      icon: const Icon(Icons.delete, size: 32),
+                      onPressed: onPressed),
                 ),
                 Container(
                   decoration: BoxDecoration(
@@ -89,7 +80,7 @@ class MyTiles extends StatelessWidget {
                   child: IconButton(
                     icon: const Icon(Icons.edit, size: 32),
                     onPressed: () => Navigator.push(
-                        context, 
+                        context,
                         MaterialPageRoute(
                           builder: (context) => NewTodoPage(todo: toodo),
                         )),
