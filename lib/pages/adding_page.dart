@@ -3,7 +3,7 @@ import 'package:my_todo_app/components/styles.dart';
 import 'package:my_todo_app/components/txtfield.dart';
 import 'package:my_todo_app/models/todo.dart';
 import 'package:my_todo_app/models/todo_dataabase.dart';
-import 'package:my_todo_app/utils/notifications_conf.dart';
+import 'package:my_todo_app/utils/reminder.dart';
 import 'package:provider/provider.dart';
 
 class NewTodoPage extends StatefulWidget {
@@ -25,10 +25,7 @@ class _NewTodoPageState extends State<NewTodoPage> {
       return;
     }
     super.initState();
-    // context.watch<TodoDatabase>().editTodo(,titleTextEditingController.text ,descTexteditingController.text );
-    // if(titleTextEditingController!=null && descTexteditingController!=null){
-
-    // }
+  
   }
 
   //create Todo
@@ -71,7 +68,7 @@ class _NewTodoPageState extends State<NewTodoPage> {
             style: TextStyle(
                 fontSize: 30,
                 fontWeight: FontWeight.bold,
-                fontFamily: AutofillHints.birthdayDay,
+                
                 color: Colors.white),
           ),
           const SizedBox(height: 8),
@@ -80,7 +77,7 @@ class _NewTodoPageState extends State<NewTodoPage> {
             style: TextStyle(
                 color: Colors.white,
                 fontSize: 16,
-                fontFamily: AutofillHints.birthday),
+                ),
           ),
           const SizedBox(height: 100),
           TxtField(
@@ -104,7 +101,7 @@ class _NewTodoPageState extends State<NewTodoPage> {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => const SendNot(),
+                        builder: (context) =>  Reminder(),
                       ));
                 },
                 style: ButtonStyle(
