@@ -33,13 +33,15 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       backgroundColor: background,
       appBar: AppBar(
-        title:  Padding(
+        title: Padding(
           padding: EdgeInsets.only(left: 12),
           child: Text(
             "Taskify",
-            style:GoogleFonts.poppins(textStyle: TextStyle(fontSize: 27,
-                
-                color: Colors.white,fontWeight: FontWeight.w600)),
+            style: GoogleFonts.poppins(
+                textStyle: TextStyle(
+                    fontSize: 27,
+                    color: Colors.white,
+                    fontWeight: FontWeight.w600)),
           ),
         ),
         elevation: 0,
@@ -47,7 +49,9 @@ class _HomePageState extends State<HomePage> {
         actions: [
           Container(
             width: 55,
-            decoration: BoxDecoration(color: iconscolor,borderRadius: BorderRadius.circular(26)),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(26),
+            ),
             child: IconButton(
               icon: const Icon(Icons.add),
               iconSize: 26,
