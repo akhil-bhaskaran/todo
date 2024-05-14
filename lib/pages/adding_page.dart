@@ -71,48 +71,58 @@ class _NewTodoPageState extends State<NewTodoPage> {
     return Scaffold(
       backgroundColor: background,
       appBar: AppBar(
+        iconTheme: IconThemeData(color: textcolor),
         backgroundColor: Colors.transparent,
         elevation: 0,
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          const Text(
-            "Hey There!",
-            style: TextStyle(
-                fontSize: 30, fontWeight: FontWeight.bold, color: Colors.white),
+      body: ListView(
+        children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+            child:
+                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              const Text(
+                "Hey There!",
+                style: TextStyle(
+                    fontSize: 30,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white),
+              ),
+              const SizedBox(height: 8),
+              const Text(
+                "What Shall I Remember You?",
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 16,
+                ),
+              ),
+              const SizedBox(height: 100),
+              TxtField(
+                mxline: 1,
+                htext: "Title(required)",
+                controller: titleTextEditingController,
+              ),
+              TxtField(
+                mxline: null,
+                htext: "Description",
+                controller: descTexteditingController,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Center(
+                      child: ElevatedButton(
+                    onPressed: createTodo,
+                    style: ButtonStyle(
+                        backgroundColor: WidgetStatePropertyAll(textcolor),
+                        foregroundColor: WidgetStatePropertyAll(iconscolor)),
+                    child: const Text("Submit"),
+                  )),
+                ],
+              ),
+            ]),
           ),
-          const SizedBox(height: 8),
-          const Text(
-            "What Shall I Remember You?",
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 16,
-            ),
-          ),
-          const SizedBox(height: 100),
-          TxtField(
-            htext: "title(required)",
-            controller: titleTextEditingController,
-          ),
-          TxtField(
-            htext: "Description",
-            controller: descTexteditingController,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Center(
-                  child: ElevatedButton(
-                onPressed: createTodo,
-                style: ButtonStyle(
-                    backgroundColor: WidgetStatePropertyAll(textcolor),
-                    foregroundColor: WidgetStatePropertyAll(iconscolor)),
-                child: const Text("Submit"),
-              )),
-            ],
-          ),
-        ]),
+        ],
       ),
     );
   }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:my_todo_app/components/styles.dart';
 import 'package:my_todo_app/models/todo.dart';
 import 'package:my_todo_app/pages/adding_page.dart';
+import 'package:my_todo_app/pages/view_page.dart';
 
 class MyTiles extends StatelessWidget {
   final void Function() onPressed;
@@ -37,37 +38,53 @@ class MyTiles extends StatelessWidget {
                       borderRadius: BorderRadius.circular(13)),
                   height: 123,
                   width: MediaQuery.of(context).size.width * 0.75,
-                  child: Expanded(
-                    child: ListTile(
-                      leading: Container(
-                        child: Checkbox(
-                          checkColor: Color.fromARGB(255, 4, 83, 1),
-                          activeColor: textcolor,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(2.0),
+                  child: Column(
+                    children: [
+                      Expanded(
+                        child: GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => ViewPage(
+                                    todo: toodo,
+                                  ),
+                                ));
+                          },
+                          child: ListTile(
+                            leading: Container(
+                              child: Checkbox(
+                                checkColor: Color.fromARGB(255, 4, 83, 1),
+                                activeColor: textcolor,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(2.0),
+                                ),
+                                side: WidgetStateBorderSide.resolveWith(
+                                  (states) =>
+                                      BorderSide(width: 1.0, color: textcolor),
+                                ),
+                                value: taskcompleted,
+                                onChanged: onchanged,
+                              ),
+                            ),
+                            title: Text(
+                              titles,
+                              overflow: TextOverflow.ellipsis,
+                              style: TextStyle(
+                                  color: textcolor,
+                                  fontSize: 22,
+                                  fontWeight: FontWeight.w800),
+                            ),
+                            subtitle: Text(descriptions,
+                                maxLines: 4,
+                                overflow: TextOverflow.ellipsis,
+                                style: TextStyle(
+                                    color: textcolor,
+                                    fontWeight: FontWeight.w300)),
                           ),
-                          side: WidgetStateBorderSide.resolveWith(
-                            (states) =>
-                                BorderSide(width: 1.0, color: textcolor),
-                          ),
-                          value: taskcompleted,
-                          onChanged: onchanged,
                         ),
                       ),
-                      title: Text(
-                        titles,
-                        overflow: TextOverflow.ellipsis,
-                        style: TextStyle(
-                            color: textcolor,
-                            fontSize: 22,
-                            fontWeight: FontWeight.w800),
-                      ),
-                      subtitle: Text(descriptions,
-                          maxLines: 4,
-                          overflow: TextOverflow.ellipsis,
-                          style: TextStyle(
-                              color: textcolor, fontWeight: FontWeight.w300)),
-                    ),
+                    ],
                   ),
                 )
               ],

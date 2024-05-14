@@ -1,14 +1,17 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:my_todo_app/components/styles.dart';
 
 class TxtField extends StatelessWidget {
   final String htext;
   final TextEditingController controller;
-
+  final int? mxline;
   const TxtField({
     super.key,
     required this.htext,
     required this.controller,
+    this.mxline,
   });
 
   @override
@@ -16,6 +19,7 @@ class TxtField extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 12),
       child: TextField(
+        maxLines: mxline,
         controller: controller,
         decoration: InputDecoration(
             enabledBorder: OutlineInputBorder(

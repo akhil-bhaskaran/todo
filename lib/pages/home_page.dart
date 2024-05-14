@@ -37,11 +37,8 @@ class _HomePageState extends State<HomePage> {
           padding: EdgeInsets.only(left: 12),
           child: Text(
             "Taskify",
-            style: GoogleFonts.poppins(
-                textStyle: TextStyle(
-                    fontSize: 27,
-                    color: Colors.white,
-                    fontWeight: FontWeight.w600)),
+            style: TextStyle(
+                fontSize: 27, color: Colors.white, fontWeight: FontWeight.w600),
           ),
         ),
         elevation: 0,
@@ -92,7 +89,36 @@ class _HomePageState extends State<HomePage> {
                     });
                   },
                   onPressed: () {
-                    todoDatabase.deleteTodo(todo.id);
+                    showDialog(
+                      context: context,
+                      builder: (context) {
+                        return AlertDialog(
+                            backgroundColor: iconscolor,
+                            content: Text(
+                              "Do you want to delete this Task?",
+                              style: TextStyle(color: Colors.white),
+                            ),
+                            actions: [
+                              TextButton(
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
+                                child: Text("No",
+                                    style: TextStyle(color: textcolor)),
+                              ),
+                              TextButton(
+                                  onPressed: () {
+                                    todoDatabase.deleteTodo(todo.id);
+                                    Navigator.pop(context);
+                                  },
+                                  child: Text(
+                                    "Yes",
+                                    style: TextStyle(color: textcolor),
+                                  ))
+                            ]);
+                      },
+                    );
+
                     setState(() {});
                   },
                   toodo: currentTodos[index],
