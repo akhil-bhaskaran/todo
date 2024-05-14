@@ -13,21 +13,22 @@ class TxtField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextField(
-      controller: controller,
-      maxLines: 1,
-      maxLength: 30,
-      decoration: InputDecoration(
-          enabledBorder: OutlineInputBorder(
-            borderSide: const BorderSide(color: Colors.white),
-            borderRadius: BorderRadius.circular(13),
-          ),
-          filled: true,
-          fillColor: textcolor,
-          border: OutlineInputBorder(
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 12),
+      child: TextField(
+        controller: controller,
+        decoration: InputDecoration(
+            enabledBorder: OutlineInputBorder(
+              borderSide: const BorderSide(color: Colors.white),
               borderRadius: BorderRadius.circular(13),
-              borderSide: BorderSide.none),
-          hintText: htext),
+            ),
+            filled: true,
+            fillColor: textcolor,
+            border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(13),
+                borderSide: BorderSide.none),
+            hintText: htext),
+      ),
     );
   }
 }

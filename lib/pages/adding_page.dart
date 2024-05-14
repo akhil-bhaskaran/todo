@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:my_todo_app/components/styles.dart';
 import 'package:my_todo_app/components/txtfield.dart';
 import 'package:my_todo_app/models/todo.dart';
@@ -30,9 +31,11 @@ class _NewTodoPageState extends State<NewTodoPage> {
   //create Todo
   void createTodo() {
     if (validator1()) {
-      SnackBar(
-        content: Text("Title is required"),
-      );
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        duration: Duration(seconds: 1),
+        content: Text("Please Enter a Title",
+            style: GoogleFonts.poppins(textStyle: TextStyle(color: textcolor))),
+      ));
     } else {
       if (widget.todo == null) {
         Todo newTodo = Todo(
@@ -58,8 +61,10 @@ class _NewTodoPageState extends State<NewTodoPage> {
   TextEditingController titleTextEditingController = TextEditingController();
   TextEditingController descTexteditingController = TextEditingController();
   bool validator1() {
-    return titleTextEditingController.text.isEmpty;
+    return (titleTextEditingController.text.isEmpty);
   }
+
+  final formKey = GlobalKey();
 
   @override
   Widget build(BuildContext context) {
@@ -101,8 +106,8 @@ class _NewTodoPageState extends State<NewTodoPage> {
                   child: ElevatedButton(
                 onPressed: createTodo,
                 style: ButtonStyle(
-                    backgroundColor: MaterialStatePropertyAll(textcolor),
-                    foregroundColor: MaterialStatePropertyAll(iconscolor)),
+                    backgroundColor: WidgetStatePropertyAll(textcolor),
+                    foregroundColor: WidgetStatePropertyAll(iconscolor)),
                 child: const Text("Submit"),
               )),
             ],

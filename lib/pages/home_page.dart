@@ -53,7 +53,11 @@ class _HomePageState extends State<HomePage> {
               borderRadius: BorderRadius.circular(26),
             ),
             child: IconButton(
-              icon: const Icon(Icons.add),
+              style:
+                  ButtonStyle(iconColor: WidgetStatePropertyAll(Colors.amber)),
+              icon: const Icon(
+                Icons.add,
+              ),
               iconSize: 26,
               onPressed: () {
                 Navigator.push(

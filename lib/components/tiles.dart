@@ -27,7 +27,7 @@ class MyTiles extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: SizedBox(
-        height: 130,
+        height: 125,
         width: double.infinity,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -38,31 +38,40 @@ class MyTiles extends StatelessWidget {
                   decoration: BoxDecoration(
                       border: Border.all(color: Colors.white, width: 2),
                       borderRadius: BorderRadius.circular(13)),
-                  height: 130,
+                  height: 123,
                   width: MediaQuery.of(context).size.width * 0.75,
-                  child: ListTile(
-                    leading: SizedBox(
-                    
-                      child: Checkbox(
-                        checkColor: Color.fromARGB(255, 4, 83, 1),
-                        activeColor: textcolor,
-                        
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(2.0),
+                  child: Expanded(
+                    child: ListTile(
+                      leading: Container(
+                        child: Checkbox(
+                          checkColor: Color.fromARGB(255, 4, 83, 1),
+                          activeColor: textcolor,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(2.0),
+                          ),
+                          side: WidgetStateBorderSide.resolveWith(
+                            (states) =>
+                                BorderSide(width: 1.0, color: textcolor),
+                          ),
+                          value: taskcompleted,
+                          onChanged: onchanged,
                         ),
-                        side: MaterialStateBorderSide.resolveWith(
-                          (states) => BorderSide(width: 1.0, color:textcolor),
-                        ),
-                        value: taskcompleted,
-                        onChanged: onchanged,
                       ),
+                      title: Text(
+                        titles,
+                        overflow: TextOverflow.ellipsis,
+                        style: GoogleFonts.poppins(
+                            textStyle: TextStyle(
+                                color: textcolor,
+                                fontSize: 22,
+                                fontWeight: FontWeight.w500)),
+                      ),
+                      subtitle: Text(descriptions,
+                          maxLines: 4,
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(
+                              color: textcolor, fontWeight: FontWeight.w300)),
                     ),
-                    title: Text(
-                      titles,
-                      style: GoogleFonts.poppins(textStyle:  TextStyle(color: textcolor, fontSize: 22,fontWeight: FontWeight.w500)),
-                    ),
-                    subtitle:
-                        Text(descriptions, style: TextStyle(color: textcolor,fontWeight: FontWeight.w300)),
                   ),
                 )
               ],
