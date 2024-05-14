@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
       title: "Taskify",
       home: HomePage(),
       theme: ThemeData(
-        textTheme: GoogleFonts.poppinsTextTheme(),
+        fontFamily: 'popins',
       ),
     );
   }

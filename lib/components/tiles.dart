@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
-
 import 'package:my_todo_app/components/styles.dart';
 import 'package:my_todo_app/models/todo.dart';
-
 import 'package:my_todo_app/pages/adding_page.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class MyTiles extends StatelessWidget {
   final void Function() onPressed;
@@ -60,11 +57,10 @@ class MyTiles extends StatelessWidget {
                       title: Text(
                         titles,
                         overflow: TextOverflow.ellipsis,
-                        style: GoogleFonts.poppins(
-                            textStyle: TextStyle(
-                                color: textcolor,
-                                fontSize: 22,
-                                fontWeight: FontWeight.w500)),
+                        style: TextStyle(
+                            color: textcolor,
+                            fontSize: 22,
+                            fontWeight: FontWeight.w800),
                       ),
                       subtitle: Text(descriptions,
                           maxLines: 4,
